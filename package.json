@@ -1,4 +1,22 @@
 {
+  "name": "react-redux-notetaker",
+  "version": "1.0.0",
+  "description": "demo app for Openkit",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spatchy/react-redux-notetaker.git"
+  },
+  "author": "Spatchy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spatchy/react-redux-notetaker/issues"
+  },
+  "homepage": "https://github.com/Spatchy/react-redux-notetaker#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "react-redux": "^8.0.1"
