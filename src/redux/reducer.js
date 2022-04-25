@@ -4,6 +4,13 @@ const initialState = {
     email: '',
     isAuthenticated: false,
     notes: []
+  },
+  modal: {
+    isOpen: false,
+    id: null,
+    title: '',
+    body: '',
+    isEditing: false
   }
 }
 
@@ -61,6 +68,28 @@ const reducer = (state = initialState, action) => {
       }
     case 'LOGOUT':
       return initialState
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        modal: {
+          isOpen: true,
+          id: action.payload.id,
+          title: action.payload.title,
+          body: action.payload.body,
+          isEditing: action.payload.isEditing
+        }
+      }
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        modal: {
+          isOpen: false,
+          id: null,
+          title: '-',
+          body: '-',
+          isEditing: false
+        }
+      }
     default:
       return state
   }
