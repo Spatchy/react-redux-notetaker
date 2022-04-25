@@ -2,19 +2,25 @@ import 'bulma/css/bulma.min.css' // Quickly use Bulma with no customisations
 import './assets/fontawesome/solid.min.css'
 import './assets/fontawesome/fontawesome.min.css'
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 import Navbar from './components/Navbar'
-//import NotesHome from './views/NotesHome'
-//import Landing from './views/Landing'
+import NotesHome from './views/NotesHome'
+import Login from './views/Login'
 import Signup from './views/Signup'
 
 function App() {
   return (
-    <div className="App">
-      <Navbar></Navbar>
-      {/* <NotesHome></NotesHome> */}
-      {/* <Landing></Landing> */}
-      <Signup></Signup>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element = {<NotesHome />} />
+          <Route path="/login" element = {<Login />} />
+          <Route path="/signup" element = {<Signup />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
