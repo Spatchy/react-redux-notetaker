@@ -1,31 +1,5 @@
 import React from "react"
-
-const testNotesArr = [
-  {
-    title: "Note 1",
-    body: "This is the body of note 1"
-  },
-  {
-    title: "Note 2",
-    body: "This is the body of note 2"
-  },
-  {
-    title: "Note 3",
-    body: "This is the body of note 3"
-  },
-  {
-    title: "Note 4",
-    body: "This is the body of note 4"
-  },
-  {
-    title: "Note 5",
-    body: "This is the body of note 5"
-  },
-  {
-    title: "Note 6",
-    body: "This is the body of note 6"
-  }
-]
+import { connect } from "react-redux"
 
 // generates rows of 5 notes using colums
 const generateRows = (notesArr) => {
@@ -57,16 +31,34 @@ const generateRows = (notesArr) => {
 }
 
 
-const NotesHome = () => {
+const NotesHome = (props) => {
   return (
     <div>
       <h1 className="title mx-5">Your Notes</h1>
       <div className="columns m-4">
-        {generateRows(testNotesArr)}
+        {generateRows(props.user.notes)}
       </div>
     </div>
   )
 }
 
-export default NotesHome
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    user: state.reducer.user,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNote: (note) => {
+      dispatch({
+        type: 'ADD_NOTE',
+        payload: note
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotesHome)
 
