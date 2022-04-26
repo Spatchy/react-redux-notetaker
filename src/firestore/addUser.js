@@ -4,13 +4,13 @@ import checkUserExists from './checkUserExists'
 
 const addUser = async (user) => {
   try {
-    if(checkUserExists(user.email)) { // check if user already exists
+    if(await checkUserExists(user.email)) { // check if user already exists
       return new Error("That email is already registered")
     } else {
       bcrypt.hash(user.password, 10, async (err, hash) => {
         if(err) throw err
         else {
-          const docRef = await setDoc(doc(db, "Users", user.email), {
+          await setDoc(doc(db, "Users", user.email), {
             name: user.name,
             email: user.email,
             notes: [
@@ -27,12 +27,12 @@ const addUser = async (user) => {
               {
                 id: 3, 
                 title: "Don't Forget to Save!", 
-                body: "Save your changes by clicking the save button on the navebar at the top"
+                body: "Save your changes by clicking the save button on the navbar at the top"
               }
             ],
             password: hash //salt is included in hash using bcrypt
           })
-          console.log("Document written with ID: ", docRef.id)
+          console.log("Document written with ID: ", user.email)
         }
       })
     }
