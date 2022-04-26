@@ -5,7 +5,7 @@ const checkUserExists = async (email) => {
     const q = doc(db, "Users", email)
     const querySnapshot = await getDoc(q)
     if(querySnapshot.exists()) {
-      return true      
+      return true
     } else {
       return false
     }
