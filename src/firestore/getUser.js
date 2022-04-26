@@ -1,18 +1,24 @@
-import {db, collection, getDocs, query, where} from './firestore'
+import {db, doc, getDoc} from './firestore'
 import bcrypt from 'bcryptjs'
 
 const getUser = async (email, password) => {
   try {
     // this isn't secure as notes are brought client side before password is checked but the db is public anyway
-    const q = query(collection(db, "Users"), where("email", "==", email))
-    const querySnapshot = await getDocs(q)
-    if(bcrypt.compareSync(password, querySnapshot.docs[0].data().password)) {
-      return querySnapshot.docs[0].data()
+    const q = doc(db, "Users", email)
+    const querySnapshot = await getDoc(q)
+    if(querySnapshot.exists()) {
+      const userData = querySnapshot.data()
+      if(await bcrypt.compare(password, userData.password)) {
+        return userData
+      } else {
+        return new Error("Your password is incorrect")
+      }
     } else {
-      return new Error("Incorrect password")
+      return new Error("That email is not registered")
     }
   } catch (e) {
-    return new Error("User not found")
+    console.error(e)
+    return new Error("An error occured while trying to connect to the database")
   }
 }
 

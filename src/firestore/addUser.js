@@ -1,4 +1,4 @@
-import {db, collection, addDoc} from './firestore'
+import {db, doc, setDoc} from './firestore'
 import bcrypt from 'bcryptjs'
 
 const addUser = async (user) => {
@@ -6,7 +6,7 @@ const addUser = async (user) => {
     bcrypt.hash(user.password, 10, async (err, hash) => {
       if(err) throw err
       else {
-        const docRef = await addDoc(collection(db, "Users"), {
+        const docRef = await setDoc(doc(db, "Users", user.email), {
           name: user.name,
           email: user.email,
           notes: [
