@@ -15,7 +15,8 @@ const initialState = {
   error: {
     isError: false,
     errorMessage: ''
-  }
+  },
+  saving: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -109,6 +110,16 @@ const reducer = (state = initialState, action) => {
           isError: false,
           errorMessage: ''
         }
+      }
+    case 'SET_SAVING':
+      return {
+        ...state,
+        saving: true
+      }
+    case 'CLEAR_SAVING':
+      return {
+        ...state,
+        saving: false
       }
     default:
       return state
