@@ -11,6 +11,10 @@ const initialState = {
     title: '',
     body: '',
     isEditing: false
+  },
+  error: {
+    isError: false,
+    errorMessage: ''
   }
 }
 
@@ -88,6 +92,22 @@ const reducer = (state = initialState, action) => {
           title: '-',
           body: '-',
           isEditing: false
+        }
+      }
+    case 'SET_ERROR':
+      return {
+        ...state,
+        error: {
+          isError: true,
+          errorMessage: action.payload
+        }
+      }
+    case 'ACKNOWLEDGE_ERROR':
+      return {
+        ...state,
+        error: {
+          isError: false,
+          errorMessage: ''
         }
       }
     default:
