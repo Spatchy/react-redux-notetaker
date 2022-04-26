@@ -1,30 +1,29 @@
 import React from "react"
 import { connect } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import getUser  from "../firestore/getUser"
 
 const Login = (props) => {
   let navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const email = event.target.email.value
     const password = event.target.password.value
-    if(email === "test@example.com" && password === "password") {
+    const account = await getUser(email, password)
+    if(account instanceof Error) {
+      props.setError(account.message)
+    } else {
       const user = {
-        name: "Test User",
-        email: email,
+        name: account.name,
+        email: account.email,
         isAuthenticated: true,
-        notes: [
-          {
-            id: 1,
-            title: "Test Note 1",
-            body: "This is a test note"
-          },
-        ]
+        notes: account.notes
       }
       props.setUser(user)
       navigate("/")
     }
+    
   }
 
   return (
@@ -93,6 +92,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: 'SET_USER',
         payload: user
+      })
+    },
+    setError: (errorMsg) => {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: errorMsg
       })
     }
   }
