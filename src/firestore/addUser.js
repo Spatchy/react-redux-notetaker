@@ -16,8 +16,18 @@ const addUser = async (user) => {
             notes: [
               {
                 id: 1, 
-                title: "Example Item", 
+                title: "Welcome " + user.name, 
                 body: "Click me to edit!"
+              },
+              {
+                id: 2, 
+                title: "Delete Me", 
+                body: "Delete notes by clicking the x button"
+              },
+              {
+                id: 3, 
+                title: "Don't Forget to Save!", 
+                body: "Save your changes by clicking the save button on the navebar at the top"
               }
             ],
             password: hash //salt is included in hash using bcrypt
