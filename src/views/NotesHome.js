@@ -54,7 +54,6 @@ const NotesHome = (props) => {
   }
   
   const removeNote = (id) => {
-    console.log("delete placeholder " + id)
     props.deleteNote(id)
   }
 
@@ -70,7 +69,6 @@ const NotesHome = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     user: state.reducer.user,
     modal: state.reducer.modal

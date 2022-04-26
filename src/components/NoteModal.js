@@ -16,7 +16,6 @@ const NoteModal = (props) => {
         body: body
       }
       if(props.modal.isEditing) {
-        console.log(noteData)
         props.editNote(noteData)
       } else {
         props.addNote(noteData)
@@ -57,7 +56,6 @@ const NoteModal = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     modal: state.reducer.modal
   }
@@ -66,14 +64,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addNote: (note) => {
-      console.log("adding new note")
       dispatch({
         type: 'ADD_NOTE',
         payload: note
       })
     },
     editNote: (note) => {
-      console.log("editing note")
       dispatch({
         type: 'UPDATE_NOTE',
         payload: note

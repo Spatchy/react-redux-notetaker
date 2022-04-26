@@ -22,7 +22,6 @@ const ErrorModal = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     error: state.reducer.error
   }
