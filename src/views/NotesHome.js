@@ -1,11 +1,14 @@
 import React from "react"
 import { connect } from "react-redux"
 import NoteModal from "../components/NoteModal"
-
-// generates rows of 5 notes using colums
+import { Navigate } from "react-router-dom"
 
 
 const NotesHome = (props) => {
+
+  if(!props.user.isAuthenticated) { // protect the route
+    return <Navigate to="/login" />
+  }
 
   const generateRows = () => {
     const notesArr = props.user.notes
