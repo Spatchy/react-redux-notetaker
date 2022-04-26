@@ -9,6 +9,11 @@ const Navbar = (props) => {
     const attempt = saveNotes(props.user.email, props.user.notes)
     if(attempt instanceof Error) {
       props.setError(attempt.message)
+    } else {
+      props.setSaving()
+      setTimeout(() => {
+        props.clearSaving()
+      }, 2000)
     }
   }
 
@@ -32,7 +37,7 @@ const Navbar = (props) => {
               {props.user.isAuthenticated ? (
                 <>
                   <button className="button is-primary" onClick={() => {save()}}>
-                    <strong>Save Changes</strong>
+                    <strong>{props.saving ? "Changes Saved" : "Save Changes"}</strong>
                   </button>
                   <button className="button is-danger" onClick={() => {logout()}}>
                     Log Out
@@ -58,7 +63,8 @@ const Navbar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.reducer.user
+    user: state.reducer.user,
+    saving: state.reducer.saving
   }
 }
 
@@ -68,6 +74,16 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: "SET_ERROR",
         payload: error
+      })
+    },
+    setSaving: () => {
+      dispatch({
+        type: "SET_SAVING"
+      })
+    },
+    clearSaving: () => {
+      dispatch({
+        type: "CLEAR_SAVING"
       })
     },
     logOut: () => {
