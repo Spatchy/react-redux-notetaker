@@ -17,7 +17,7 @@ const NotesHome = (props) => {
   
     notesArr.forEach((note, index) => {
       columns[index % 5].push(
-        <article className="notification is-primary" key={index} onClick={() => editNote(note.id, note.title, note.body)}>
+        <article className="notification is-primary" key={index} onClick={() => editNote(note.id, note.title, note.body)} style={{height:"15em"}}>
           <button className="delete is-large" onClick={(event) => {event.stopPropagation(); removeNote(note.id)}}></button>
           <p className="title">{note.title}</p>
           <p className="subtitle">{note.body}</p>
@@ -25,7 +25,7 @@ const NotesHome = (props) => {
       )
     })
     columns[notesArr.length % 5].push(
-      <article className="notification" key="newBtn" onClick={() => {newNote(notesArr.length > 0 ? notesArr[notesArr.length-1].id+1 : 1)}}>
+      <article className="notification" key="newBtn" onClick={() => {newNote(notesArr.length > 0 ? notesArr[notesArr.length-1].id+1 : 1)}} style={{height:"15em"}}>
         <p className="title">+ New Note</p>
         <p className="subtitle">Click to add...</p>
       </article>
