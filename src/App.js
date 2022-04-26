@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import NotesHome from './views/NotesHome'
 import Login from './views/Login'
 import Signup from './views/Signup'
+import ErrorModal from './components/ErrorModal'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element = {<Login />} />
             <Route path="/signup" element = {<Signup />} />
           </Routes>
+          <ErrorModal></ErrorModal>
         </div>
       </Provider>
     </Router>
