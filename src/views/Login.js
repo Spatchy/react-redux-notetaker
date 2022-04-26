@@ -31,10 +31,10 @@ const Login = (props) => {
       <div className="hero-body">
         <div className="container">
           <h1 className="title has-text-centered">
-            Welcome to the Note App
+            Welcome to the Todo App
           </h1>
           <h2 className="subtitle has-text-centered">
-            A simple note app built with React and Redux
+            A simple todo app built with React and Redux
           </h2>
           <div className="columns is-centered">
             <div className="column is-3">
