@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 const Signup = (props) => {
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const name = event.target.name.value
     const email = event.target.email.value
@@ -18,7 +18,7 @@ const Signup = (props) => {
         email: email,
         password: password
       }
-      const attempt = addUser(user)
+      const attempt = await addUser(user)
       if(attempt instanceof Error) {
         props.setError(attempt.message)
       } else { // if no error, user is added to database
