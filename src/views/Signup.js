@@ -43,7 +43,7 @@ const Signup = (props) => {
                   <p className="control has-icons-left has-icons-right">
                     <input className="input" type="text" name="name" placeholder="Name" />
                     <span className="icon is-small is-left">
-                      <i class="fa-solid fa-user"></i>
+                      <i className="fa-solid fa-user"></i>
                     </span>
                     <span className="icon is-small is-right">
                       <i className="fas fa-check"></i>
