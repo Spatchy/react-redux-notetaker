@@ -22,7 +22,7 @@ const addUser = async (user) => {
               {
                 id: 2, 
                 title: "Delete Me", 
-                body: "Delete notes by clicking the x button"
+                body: "Delete items by clicking the x button"
               },
               {
                 id: 3, 
