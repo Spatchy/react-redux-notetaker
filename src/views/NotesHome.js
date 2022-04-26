@@ -17,7 +17,11 @@ const NotesHome = (props) => {
   
     notesArr.forEach((note, index) => {
       columns[index % 5].push(
-        <article className="notification is-primary" key={index} onClick={() => editNote(note.id, note.title, note.body)} style={{height:"15em"}}>
+        <article className="notification is-primary" key={index} onClick={() => editNote(note.id, note.title, note.body)} style={{
+          height:"15em", 
+          textOverflow:"ellipsis",
+          overflow:"hidden"
+          }}>
           <button className="delete is-large" onClick={(event) => {event.stopPropagation(); removeNote(note.id)}}></button>
           <p className="title">{note.title}</p>
           <p className="subtitle">{note.body}</p>
@@ -26,7 +30,7 @@ const NotesHome = (props) => {
     })
     columns[notesArr.length % 5].push(
       <article className="notification" key="newBtn" onClick={() => {newNote(notesArr.length > 0 ? notesArr[notesArr.length-1].id+1 : 1)}} style={{height:"15em"}}>
-        <p className="title">+ New Note</p>
+        <p className="title">+ New Item</p>
         <p className="subtitle">Click to add...</p>
       </article>
     )
@@ -56,7 +60,7 @@ const NotesHome = (props) => {
 
   return (
     <div>
-      <h1 className="title mx-5">Your Notes</h1>
+      <h1 className="title mx-5">{props.user.name}'s To Do List</h1>
       <div className="columns m-4">
         {generateRows()}
         <NoteModal />
