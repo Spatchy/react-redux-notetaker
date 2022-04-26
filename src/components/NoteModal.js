@@ -8,7 +8,7 @@ const NoteModal = (props) => {
     const title = event.target.title.value
     const body = event.target.body.value
     if(title === "" || body === "") {
-      alert("Please fill out all fields")
+      props.setError("Please fill out all fields")
     } else {
       const noteData = {
         id: props.modal.id,
@@ -82,6 +82,12 @@ const mapDispatchToProps = (dispatch) => {
     closeModal: () => {
       dispatch({
         type: 'CLOSE_MODAL'
+      })
+    },
+    setError: (errorMsg) => {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: errorMsg
       })
     }
   }
