@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { connect } from "react-redux"
 
 const Signup = (props) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -18,8 +18,12 @@ const Signup = (props) => {
         email: email,
         password: password
       }
-      addUser(user)
-      navigate("/login")
+      const attempt = addUser(user)
+      if(attempt instanceof Error) {
+        props.setError(attempt.message)
+      } else { // if no error, user is added to database
+        navigate("/login")
+      }
     } else {
       props.setError("Passwords do not match")
     }
